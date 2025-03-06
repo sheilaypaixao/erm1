@@ -13,5 +13,7 @@ class Permissions(Base):
         permissions = Permission.objects.filter(content_type_id__in=[2,8,11,12]).all()
 
         serializers = PermissionsSerializer(permissions, many=True)
+        
+        print(serializers)
 
         return Response({"serializer": serializers.data})
