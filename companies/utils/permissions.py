@@ -6,7 +6,7 @@ def check_permission(user, method, permission_to):
 
     if not user.is_authenticated:
         return False
-    print(user.is_owner)
+
     if user.is_owner:
         return True
     

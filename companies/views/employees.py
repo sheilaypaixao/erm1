@@ -3,7 +3,7 @@ from companies.utils.permissions import EmployeePermissions
 from rest_framework.exceptions import APIException
 
 from companies.models import Employee, Enterprise
-from accounts.models import User, User_Grouping
+from accounts.models import User
 from accounts.auth import Authentication
 from companies.serializers import EmployeeSerializers, EmployeeDetailSerializers
 
@@ -13,10 +13,17 @@ class Employees(Base):
     permission_classes = [EmployeePermissions]
 
     def get(self, request):
+        with_owner = request.GET.get("with_owner", False)
+
         enterprise_id = self.get_enterprise_id(request.user.id)
         owner_id = Enterprise.objects.filter(id=enterprise_id).first().owner_id
 
-        employees = Employee.objects.filter(enterprise_id=enterprise_id).exclude(user_id=owner_id).all()
+        employees = Employee.objects.filter(enterprise_id=enterprise_id).all()
+
+        print(with_owner)
+
+        if not with_owner or with_owner == "false":
+            employees = employees.exclude(user_id=owner_id).all()
 
         serializer = EmployeeSerializers(employees, many=True)
 
@@ -26,20 +33,14 @@ class Employees(Base):
         name = request.data.get("name")
         email = request.data.get("email")
         password = request.data.get("password")
-        groupings = request.data.get("grouping")
+        group_id = request.data.get("group_id")
 
         enterprise_id = self.get_enterprise_id(request.user.id)
 
         user = Authentication.signup(self, name=name, email=email, password=password, type_account="employee", company_id=enterprise_id)
-
-        if groupings:
-            groupings = groupings.split(",")
-
-            for group in groupings:
-                User_Grouping.objects.create(
-                    user_id=user.id,
-                    grouping_id=group
-                )
+        group = self.get_grouping(group_id, enterprise_id)
+        user.grouping = group
+        user.save()
 
         employee = Employee.objects.get(user_id=user.id)
         serializer = EmployeeDetailSerializers(employee)
@@ -56,8 +57,9 @@ class EmployeesDetail(Base):
         return Response({"employee": serializer.data})
 
     def put(self, request, employee_id):
-        groupings = request.data.get("groupings")
+        group_id = request.data.get("group_id")
         employee = self.get_employee(employee_id, request.user.id)
+        enterprise_id = self.get_enterprise_id(request.user.id)
         
         name = request.data.get("name") or employee.user.name
         email = request.data.get("email") or employee.user.email
@@ -65,15 +67,9 @@ class EmployeesDetail(Base):
         if email!=employee.user.email and User.objects.filter(email=email).exists():
             raise APIException("Esse email já está em uso")
         
-        employee.user.grouping_set.all().delete()
+        group = self.get_grouping(group_id, enterprise_id)
 
-        if groupings:
-            groupings = groupings.split(",")
-
-            for group in groupings:
-                grouping = self.get_grouping(group.id, request.user.id)
-                employee.user.grouping_set.add(grouping)
-        
+        employee.user.grouping = group
         employee.user.name = name
         employee.user.email = email
         employee.user.save()

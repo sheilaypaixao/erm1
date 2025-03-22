@@ -85,9 +85,10 @@ WSGI_APPLICATION = 'erm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'curso_erm',
-        'USER': 'root',
-        #'PASSWORD': 'admin',
+        'NAME': 'erm',
+        'USER': 'admin',
+        'PASSWORD': 'Himawari_31',
+        'HOST': 'erm.c5s80iowoji6.us-east-2.rds.amazonaws.com',
         'PORT': 3306
     }
 }
@@ -155,5 +156,6 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "SLIDING_TOKEN_LIFETIME": timedelta(days=1)
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    "SLIDING_TOKEN_LIFETIME":  timedelta(days=1)
 }

@@ -1,7 +1,9 @@
+from rest_framework.views import Response
+
 from companies.views.base import Base
 from accounts.auth import Authentication
 from accounts.serializers import UserSerializer
-from rest_framework.views import Response
+
 
 class Enterprise(Base):
     def post(self, request):

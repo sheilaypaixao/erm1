@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.exceptions import APIException
 
-from accounts.models import User_Grouping, Grouping_Permissions
+from accounts.models import Grouping_Permissions, User
 
 from companies.models import Enterprise, Employee
 
@@ -18,24 +18,22 @@ class Base(APIView):
 
         # Permissions, Get Employee
         employee = Employee.objects.filter(user_id=user_id).first()
+        user = User.objects.filter(id=user_id).first()
 
         #if not employee: raise APIException("Este usuário não é um funcionário")
 
         if not employee: return enterprise
 
-        groups = User_Grouping.objects.filter(user_id=user_id).all()
+        group = user.grouping
 
-        for g in groups:
-            group = g.group
+        permissions = Grouping_Permissions.objects.filter(group_id=group.id).all()
 
-            permissions = Grouping_Permissions.objects.filter(group_id=group.id).all()
-
-            for p in permissions:
-                enterprise['permissions'].append({
-                    "id": p.permission.id,
-                    "label": p.permission.name,
-                    "codename": p.permission.codename
-                })
+        for p in permissions:
+            enterprise['permissions'].append({
+                "id": p.permission.id,
+                "label": p.permission.name,
+                "codename": p.permission.codename
+            })
 
         return enterprise
 

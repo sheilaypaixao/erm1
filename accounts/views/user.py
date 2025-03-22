@@ -5,7 +5,7 @@ from accounts.serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-class GetUser(Base):
+class UserView(Base):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from accounts.models import User, User_Grouping, Grouping, Grouping_Permissions
-from companies.models import Employee, Task
+from accounts.models import User, Grouping, Grouping_Permissions
+from companies.models import Employee, Task, TaskStatus
 
 from django.contrib.auth.models import Permission
 
@@ -26,7 +26,7 @@ class EmployeeSerializers(serializers.ModelSerializer):
 class EmployeeDetailSerializers(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
     email = serializers.SerializerMethodField()
-    grouping = serializers.SerializerMethodField()
+    group = serializers.SerializerMethodField()
 
     class Meta:
         model = Employee
@@ -34,7 +34,7 @@ class EmployeeDetailSerializers(serializers.ModelSerializer):
             "id",
             "name",
             "email",
-            "grouping"
+            "group"
         )
     
     def get_name(self, obj):
@@ -43,17 +43,9 @@ class EmployeeDetailSerializers(serializers.ModelSerializer):
     def get_email(self,obj):
         return obj.user.email
     
-    def get_grouping(self,obj):
-        groupings = obj.user.grouping_set.all()
-        groupingsData = []
-
-        for grouping in groupings:
-            groupingsData.append({
-                "id": grouping.id,
-                "name": grouping.name
-            })
-        
-        return groupingsData
+    def get_group(self,obj):
+        return GroupingSerializer(obj.user.grouping).data
+    
 
 class GroupingSerializer(serializers.ModelSerializer):
     permissions = serializers.SerializerMethodField()
@@ -90,25 +82,8 @@ class PermissionsSerializer(serializers.ModelSerializer):
 
 class TasksSerializer(serializers.ModelSerializer):
     status = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Task
-        fields=(
-            "id",
-            "title",
-            "description",
-            "due_date",
-            "created_at",
-            "updated_at",
-            "status"
-        )
-    
-    def get_status(self, obj):
-        return obj.status.name
-
-class TasksSerializer(serializers.ModelSerializer):
-    status = serializers.SerializerMethodField()
     employee = serializers.SerializerMethodField()
+    creator_employee = serializers.SerializerMethodField()
 
     class Meta:
         model = Task
@@ -120,14 +95,46 @@ class TasksSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "status",
-            "employee"
+            "employee",
+            "creator_employee"
         )
     
     def get_status(self, obj):
-        return obj.status.name
+        return TaskStatusSerializer(obj.status).data
     
     def get_employee(self, obj):
         return EmployeeDetailSerializers(obj.employee).data
+
+    def get_creator_employee(self, obj):
+        return EmployeeDetailSerializers(obj.creator_employee).data
+
+class TaskSerializer(serializers.ModelSerializer):
+    status = serializers.SerializerMethodField()
+    employee = serializers.SerializerMethodField()
+    creator_employee = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Task
+        fields=(
+            "id",
+            "title",
+            "description",
+            "due_date",
+            "created_at",
+            "updated_at",
+            "status",
+            "employee",
+            "creator_employee"
+        )
+    
+    def get_status(self, obj):
+        return TaskStatusSerializer(obj.status).data
+    
+    def get_employee(self, obj):
+        return EmployeeDetailSerializers(obj.employee).data
+
+    def get_creator_employee(self, obj):
+        return EmployeeDetailSerializers(obj.creator_employee).data
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get("title", instance.title)
@@ -140,3 +147,11 @@ class TasksSerializer(serializers.ModelSerializer):
 
         return instance
 
+class TaskStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TaskStatus
+        fields=(
+            "id",
+            "name",
+            "codename",
+        )
