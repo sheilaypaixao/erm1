@@ -1,6 +1,6 @@
 echo "Building the project..."
 
-yum install yum python3-dev default-libmysqlclient-dev build-essential pkg-config
+yum install libmysqlclient pkg-config
 
 python3.12 -m venv venv
 source venv/bin/activate
