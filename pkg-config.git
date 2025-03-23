@@ -1,0 +1,455 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="gl-light ui-neutral with-top-bar with-header " lang="en">
+<head prefix="og: http://ogp.me/ns#">
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>pkg-config / pkg-config · GitLab</title>
+<script>
+//<![CDATA[
+window.gon={};gon.features={"inlineBlame":false,"removeMonitorMetrics":true,"issueEmailParticipants":true,"editBranchRules":true,"pageSpecificStyles":false,"blobRepositoryVueHeaderApp":false,"blobOverflowMenu":false,"directoryCodeDropdownUpdates":false,"workItems":true,"workItemsBeta":false,"workItemsAlpha":false,"extendedExpiryWebhookExecutionSetting":false,"workItemDescriptionTemplates":false};
+//]]>
+</script>
+
+
+<script>
+//<![CDATA[
+var gl = window.gl || {};
+gl.startup_calls = {"/pkg-config/pkg-config/-/refs/master/logs_tree/?format=json\u0026offset=0\u0026ref_type=heads":{},"/pkg-config/pkg-config/-/blob/master/README?format=json\u0026viewer=rich":{}};
+gl.startup_graphql_calls = [{"query":"query pathLastCommit($projectPath: ID!, $path: String, $ref: String!, $refType: RefType) {\n  project(fullPath: $projectPath) {\n    __typename\n    id\n    repository {\n      __typename\n      paginatedTree(path: $path, ref: $ref, refType: $refType) {\n        __typename\n        nodes {\n          __typename\n          lastCommit {\n            __typename\n            id\n            sha\n            title\n            titleHtml\n            descriptionHtml\n            message\n            webPath\n            authoredDate\n            authorName\n            authorGravatar\n            author {\n              __typename\n              id\n              name\n              avatarUrl\n              webPath\n            }\n            signature {\n              __typename\n              ... on GpgSignature {\n                gpgKeyPrimaryKeyid\n                verificationStatus\n              }\n              ... on X509Signature {\n                verificationStatus\n                x509Certificate {\n                  id\n                  subject\n                  subjectKeyIdentifier\n                  x509Issuer {\n                    id\n                    subject\n                    subjectKeyIdentifier\n                  }\n                }\n              }\n              ... on SshSignature {\n                verificationStatus\n                keyFingerprintSha256\n              }\n            }\n            pipelines(ref: $ref, first: 1) {\n              __typename\n              edges {\n                __typename\n                node {\n                  __typename\n                  id\n                  detailedStatus {\n                    __typename\n                    id\n                    detailsPath\n                    icon\n                    tooltip\n                    text\n                    group\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n","variables":{"projectPath":"pkg-config/pkg-config","ref":"master","path":""}}];
+
+if (gl.startup_calls && window.fetch) {
+  Object.keys(gl.startup_calls).forEach(apiCall => {
+   gl.startup_calls[apiCall] = {
+      fetchCall: fetch(apiCall, {
+        // Emulate XHR for Rails AJAX request checks
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        // fetch won’t send cookies in older browsers, unless you set the credentials init option.
+        // We set to `same-origin` which is default value in modern browsers.
+        // See https://github.com/whatwg/fetch/pull/585 for more information.
+        credentials: 'same-origin'
+      })
+    };
+  });
+}
+if (gl.startup_graphql_calls && window.fetch) {
+  const headers = {"X-CSRF-Token":"4dlusan-i0W11zc-HXWdqePD9Q3Tevj183mPor1N5Rp55bJdf6Yd2n2kodqjz2ThrpMLCOec9388RRpb8bNs1A","x-gitlab-feature-category":"groups_and_projects"};
+  const url = `https://gitlab.freedesktop.org/api/graphql`
+
+  const opts = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    }
+  };
+
+  gl.startup_graphql_calls = gl.startup_graphql_calls.map(call => ({
+    ...call,
+    fetchCall: fetch(url, {
+      ...opts,
+      credentials: 'same-origin',
+      body: JSON.stringify(call)
+    })
+  }))
+}
+
+
+//]]>
+</script>
+
+
+
+<link rel="stylesheet" href="/assets/application-182846f5d03243644eeff8074a2e7a731654615c4445f6d1134b9d422825e3ce.css" />
+<link rel="stylesheet" href="/assets/page_bundles/project-09098f19d751aaa2c56361d68ded871992a373822d54f9658406471655477e88.css" /><link rel="stylesheet" href="/assets/page_bundles/tree-49ae6a2f72af332906799a87b8b74e44ede65ce71f393346d0a1abb47656411a.css" /><link rel="stylesheet" href="/assets/page_bundles/commit_description-1e2cba4dda3c7b30dd84924809020c569f1308dea51520fe1dd5d4ce31403195.css" /><link rel="stylesheet" href="/assets/page_bundles/projects-c1b074633330252f3bf88cfb1fb82d7e1eb26916257ac477c453155345ea1c21.css" /><link rel="stylesheet" href="/assets/page_bundles/work_items-22a76cdd1fe2ae5431b7ff603f86212acaf81b49c4a932f19e3b3222dc1881ee.css" /><link rel="stylesheet" href="/assets/page_bundles/notes_shared-30de79203a0836dddd3a4cf7364d63afb16a0f2deb0bbc654b00692872696739.css" />
+<link rel="stylesheet" href="/assets/application_utilities-58bec0f2dc46133fc9e8548af9854688398e9d7263cc0fd95ec5739f2a069dec.css" />
+<link rel="stylesheet" href="/assets/tailwind-469e8cf29ca81e21f824ad683201a6a63c135a4ef89f152be2954d9af0217517.css" />
+
+
+<link rel="stylesheet" href="/assets/fonts-fae5d3f79948bd85f18b6513a025f863b19636e85b09a1492907eb4b1bb0557b.css" />
+<link rel="stylesheet" href="/assets/highlight/themes/white-99cce4f4b362f6840d7134d4129668929fde49c4da11d6ebf17f99768adbd868.css" />
+
+
+<link rel="preload" href="/assets/application_utilities-58bec0f2dc46133fc9e8548af9854688398e9d7263cc0fd95ec5739f2a069dec.css" as="style" type="text/css">
+<link rel="preload" href="/assets/application-182846f5d03243644eeff8074a2e7a731654615c4445f6d1134b9d422825e3ce.css" as="style" type="text/css">
+<link rel="preload" href="/assets/highlight/themes/white-99cce4f4b362f6840d7134d4129668929fde49c4da11d6ebf17f99768adbd868.css" as="style" type="text/css">
+
+
+
+
+<script src="/assets/webpack/runtime.feed104e.bundle.js" defer="defer"></script>
+<script src="/assets/webpack/main.fc49e848.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.groups.new-pages.import.gitlab_projects.new-pages.import.manifest.new-pages.projects.n-a0973272.5fca6f92.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.groups.new-pages.import.gitlab_projects.new-pages.import.manifest.new-pages.projects.n-44c6c18e.977bfa43.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.search.show-super_sidebar.be008869.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/super_sidebar.8f4462d8.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects-pages.projects.activity-pages.projects.alert_management.details-pages.project-2e472f70.08214ed0.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.branches.new-pages.projects.commits.show-pages.proje-81161c0b.3861ecff.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.snippets.edit-pages.projects.sni-42df7d4c.26708f26.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.import.gitea.new-pages.projects.blob.edit-pages.projects.blob.new-pages.projects.blob.-d3b067b6.6ebab152.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/87.a5ae2fb7.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.branches.index-pages.projects.show-pages.projects.ta-c9380b86.33f1d44a.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.snippets.show-pages.projects.tre-c684fcf6.f0f1a9b9.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.blob.edit-pages.projects.blob.new-pages.projects.blob.show-pages.projects.sho-ec79e51c.5c7a974c.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show-pages.search.show.f5e172b4.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.blame.show-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show.6a18aa4b.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.groups.show-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show.28f09367.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show.74201d51.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.groups.show-pages.projects.home_panel-pages.projects.show.5b199283.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects.home_panel-pages.projects.show.bae785de.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/pages.projects.show.04f8dadc.chunk.js" defer="defer"></script>
+
+<meta content="object" property="og:type">
+<meta content="GitLab" property="og:site_name">
+<meta content="pkg-config / pkg-config · GitLab" property="og:title">
+<meta content="freedesktop.org GitLab login" property="og:description">
+<meta content="https://gitlab.freedesktop.org/assets/twitter_card-570ddb06edf56a2312253c5872489847a0f385112ddbcd71ccfa1570febab5d2.jpg" property="og:image">
+<meta content="64" property="og:image:width">
+<meta content="64" property="og:image:height">
+<meta content="https://gitlab.freedesktop.org/pkg-config/pkg-config" property="og:url">
+<meta content="summary" property="twitter:card">
+<meta content="pkg-config / pkg-config · GitLab" property="twitter:title">
+<meta content="freedesktop.org GitLab login" property="twitter:description">
+<meta content="https://gitlab.freedesktop.org/assets/twitter_card-570ddb06edf56a2312253c5872489847a0f385112ddbcd71ccfa1570febab5d2.jpg" property="twitter:image">
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="71edvWqMEldLEIFEjemAedePolQ54TMl3zJkq2YQoHN3a0FRvNSEyINjF6AzU3kxmt9cUQ0HPK8QDvFSKu4pvQ" />
+<meta name="csp-nonce" />
+<meta name="action-cable-url" content="/-/cable" />
+<link href="/-/manifest.json" rel="manifest">
+<link rel="icon" type="image/png" href="/uploads/-/system/appearance/favicon/1/fdo-favicon.ico" id="favicon" data-original-href="/uploads/-/system/appearance/favicon/1/fdo-favicon.ico" />
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/apple-touch-icon-b049d4bc0dd9626f31db825d61880737befc7835982586d015bded10b4435460.png" />
+<link href="/search/opensearch.xml" rel="search" title="Search GitLab" type="application/opensearchdescription+xml">
+<link rel="alternate" type="application/atom+xml" title="pkg-config activity" href="/pkg-config/pkg-config.atom" />
+
+
+
+
+<meta content="freedesktop.org GitLab login" name="description">
+<meta content="#ececef" name="theme-color">
+</head>
+
+<body class="tab-width-8 gl-browser-generic gl-platform-other" data-group="pkg-config" data-group-full-path="pkg-config" data-namespace-id="1224" data-page="projects:show" data-page-type-id="pkg-config" data-project="pkg-config" data-project-full-path="pkg-config/pkg-config" data-project-id="953">
+
+<script>
+//<![CDATA[
+gl = window.gl || {};
+gl.client = {"isGeneric":true,"isOther":true};
+
+
+//]]>
+</script>
+
+
+<header class="header-logged-out" data-testid="navbar">
+<a class="gl-sr-only gl-accessibility" href="#content-body">Skip to content</a>
+<div class="container-fluid">
+<nav aria-label="Explore GitLab" class="header-logged-out-nav gl-flex gl-gap-3 gl-justify-between">
+<div class="gl-flex gl-items-center gl-gap-1">
+<span class="gl-sr-only">GitLab</span>
+<a title="Homepage" id="logo" class="header-logged-out-logo has-tooltip" aria-label="Homepage" href="/"><img class="brand-header-logo lazy" alt="" data-src="/uploads/-/system/appearance/header_logo/1/fdo-logo-header.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+</a></div>
+<ul class="gl-list-none gl-p-0 gl-m-0 gl-flex gl-gap-3 gl-items-center gl-grow">
+<li class="header-logged-out-nav-item">
+<a class="" href="/explore">Explore</a>
+</li>
+</ul>
+<ul class="gl-list-none gl-p-0 gl-m-0 gl-flex gl-gap-3 gl-items-center gl-justify-end">
+<li class="header-logged-out-nav-item">
+<a href="/users/sign_in?redirect_to_referer=yes">Sign in</a>
+</li>
+<li class="header-logged-out-nav-item">
+<a class="gl-button btn btn-md btn-confirm !gl-inline-flex" href="/users/sign_up"><span class="gl-button-text">
+Register
+
+</span>
+
+</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<div class="layout-page page-with-super-sidebar">
+<aside class="js-super-sidebar super-sidebar super-sidebar-loading" data-command-palette="{&quot;project_files_url&quot;:&quot;/pkg-config/pkg-config/-/files/master?format=json&quot;,&quot;project_blob_url&quot;:&quot;/pkg-config/pkg-config/-/blob/master&quot;}" data-force-desktop-expanded-sidebar="" data-is-saas="false" data-root-path="/" data-sidebar="{&quot;is_logged_in&quot;:false,&quot;context_switcher_links&quot;:[{&quot;title&quot;:&quot;Explore&quot;,&quot;link&quot;:&quot;/explore&quot;,&quot;icon&quot;:&quot;compass&quot;}],&quot;current_menu_items&quot;:[{&quot;id&quot;:&quot;project_overview&quot;,&quot;title&quot;:&quot;pkg-config&quot;,&quot;entity_id&quot;:953,&quot;link&quot;:&quot;/pkg-config/pkg-config&quot;,&quot;link_classes&quot;:&quot;shortcuts-project&quot;,&quot;is_active&quot;:true},{&quot;id&quot;:&quot;manage_menu&quot;,&quot;title&quot;:&quot;Manage&quot;,&quot;icon&quot;:&quot;users&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/activity&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;activity&quot;,&quot;title&quot;:&quot;Activity&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/activity&quot;,&quot;link_classes&quot;:&quot;shortcuts-project-activity&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;members&quot;,&quot;title&quot;:&quot;Members&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/project_members&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;labels&quot;,&quot;title&quot;:&quot;Labels&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/labels&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;plan_menu&quot;,&quot;title&quot;:&quot;Plan&quot;,&quot;icon&quot;:&quot;planning&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/issues&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;project_issue_list&quot;,&quot;title&quot;:&quot;Issues&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/issues&quot;,&quot;pill_count_field&quot;:&quot;openIssuesCount&quot;,&quot;link_classes&quot;:&quot;shortcuts-issues has-sub-items&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;boards&quot;,&quot;title&quot;:&quot;Issue boards&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/boards&quot;,&quot;link_classes&quot;:&quot;shortcuts-issue-boards&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;milestones&quot;,&quot;title&quot;:&quot;Milestones&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/milestones&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;code_menu&quot;,&quot;title&quot;:&quot;Code&quot;,&quot;icon&quot;:&quot;code&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/merge_requests&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;project_merge_request_list&quot;,&quot;title&quot;:&quot;Merge requests&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/merge_requests&quot;,&quot;pill_count_field&quot;:&quot;openMergeRequestsCount&quot;,&quot;link_classes&quot;:&quot;shortcuts-merge_requests&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;files&quot;,&quot;title&quot;:&quot;Repository&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/tree/master&quot;,&quot;link_classes&quot;:&quot;shortcuts-tree&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;branches&quot;,&quot;title&quot;:&quot;Branches&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/branches&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;commits&quot;,&quot;title&quot;:&quot;Commits&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/commits/master?ref_type=heads&quot;,&quot;link_classes&quot;:&quot;shortcuts-commits&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;tags&quot;,&quot;title&quot;:&quot;Tags&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/tags&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;graphs&quot;,&quot;title&quot;:&quot;Repository graph&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/network/master?ref_type=heads&quot;,&quot;link_classes&quot;:&quot;shortcuts-network&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;compare&quot;,&quot;title&quot;:&quot;Compare revisions&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/compare?from=master\u0026to=master&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;project_snippets&quot;,&quot;title&quot;:&quot;Snippets&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/snippets&quot;,&quot;link_classes&quot;:&quot;shortcuts-snippets&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;build_menu&quot;,&quot;title&quot;:&quot;Build&quot;,&quot;icon&quot;:&quot;rocket&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/pipelines&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;pipelines&quot;,&quot;title&quot;:&quot;Pipelines&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/pipelines&quot;,&quot;link_classes&quot;:&quot;shortcuts-pipelines&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;jobs&quot;,&quot;title&quot;:&quot;Jobs&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/jobs&quot;,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;pipeline_schedules&quot;,&quot;title&quot;:&quot;Pipeline schedules&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/pipeline_schedules&quot;,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;artifacts&quot;,&quot;title&quot;:&quot;Artifacts&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/artifacts&quot;,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;deploy_menu&quot;,&quot;title&quot;:&quot;Deploy&quot;,&quot;icon&quot;:&quot;deployments&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/releases&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;releases&quot;,&quot;title&quot;:&quot;Releases&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/releases&quot;,&quot;link_classes&quot;:&quot;shortcuts-deployments-releases&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;container_registry&quot;,&quot;title&quot;:&quot;Container Registry&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/container_registry&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;model_registry&quot;,&quot;title&quot;:&quot;Model registry&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/ml/models&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;operations_menu&quot;,&quot;title&quot;:&quot;Operate&quot;,&quot;icon&quot;:&quot;cloud-pod&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/environments&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;environments&quot;,&quot;title&quot;:&quot;Environments&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/environments&quot;,&quot;link_classes&quot;:&quot;shortcuts-environments&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;monitor_menu&quot;,&quot;title&quot;:&quot;Monitor&quot;,&quot;icon&quot;:&quot;monitor&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/incidents&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;incidents&quot;,&quot;title&quot;:&quot;Incidents&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/incidents&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;analyze_menu&quot;,&quot;title&quot;:&quot;Analyze&quot;,&quot;icon&quot;:&quot;chart&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/value_stream_analytics&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;cycle_analytics&quot;,&quot;title&quot;:&quot;Value stream analytics&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/value_stream_analytics&quot;,&quot;link_classes&quot;:&quot;shortcuts-project-cycle-analytics&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;contributors&quot;,&quot;title&quot;:&quot;Contributor analytics&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/graphs/master?ref_type=heads&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;ci_cd_analytics&quot;,&quot;title&quot;:&quot;CI/CD analytics&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/pipelines/charts&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;repository_analytics&quot;,&quot;title&quot;:&quot;Repository analytics&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/graphs/master/charts&quot;,&quot;link_classes&quot;:&quot;shortcuts-repository-charts&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;model_experiments&quot;,&quot;title&quot;:&quot;Model experiments&quot;,&quot;link&quot;:&quot;/pkg-config/pkg-config/-/ml/experiments&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false}],&quot;current_context_header&quot;:&quot;Project&quot;,&quot;support_path&quot;:&quot;https://about.gitlab.com/get-help/&quot;,&quot;docs_path&quot;:&quot;/help/docs&quot;,&quot;display_whats_new&quot;:false,&quot;show_version_check&quot;:null,&quot;search&quot;:{&quot;search_path&quot;:&quot;/search&quot;,&quot;issues_path&quot;:&quot;/dashboard/issues&quot;,&quot;mr_path&quot;:&quot;/dashboard/merge_requests&quot;,&quot;autocomplete_path&quot;:&quot;/search/autocomplete&quot;,&quot;settings_path&quot;:&quot;/search/settings&quot;,&quot;search_context&quot;:{&quot;group&quot;:{&quot;id&quot;:1224,&quot;name&quot;:&quot;pkg-config&quot;,&quot;full_name&quot;:&quot;pkg-config&quot;},&quot;group_metadata&quot;:{&quot;issues_path&quot;:&quot;/groups/pkg-config/-/issues&quot;,&quot;mr_path&quot;:&quot;/groups/pkg-config/-/merge_requests&quot;},&quot;project&quot;:{&quot;id&quot;:953,&quot;name&quot;:&quot;pkg-config&quot;},&quot;project_metadata&quot;:{&quot;mr_path&quot;:&quot;/pkg-config/pkg-config/-/merge_requests&quot;,&quot;issues_path&quot;:&quot;/pkg-config/pkg-config/-/issues&quot;},&quot;code_search&quot;:true,&quot;ref&quot;:&quot;master&quot;,&quot;scope&quot;:null,&quot;for_snippets&quot;:null}},&quot;panel_type&quot;:&quot;project&quot;,&quot;shortcut_links&quot;:[{&quot;title&quot;:&quot;Snippets&quot;,&quot;href&quot;:&quot;/explore/snippets&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-snippets&quot;},{&quot;title&quot;:&quot;Groups&quot;,&quot;href&quot;:&quot;/explore/groups&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-groups&quot;},{&quot;title&quot;:&quot;Projects&quot;,&quot;href&quot;:&quot;/explore/projects/starred&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-projects&quot;}],&quot;terms&quot;:&quot;/-/users/terms&quot;}"></aside>
+
+<div class="content-wrapper">
+<div class="broadcast-wrapper">
+
+<div class="gl-broadcast-message banner js-broadcast-notification-10 light-red" data-broadcast-banner data-testid="banner-broadcast-message" role="alert">
+<div class="gl-broadcast-message-content">
+<div class="gl-broadcast-message-icon">
+<svg class="s16" data-testid="bullhorn-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#bullhorn"></use></svg>
+</div>
+<div class="gl-broadcast-message-text">
+<h2 class="gl-sr-only">Admin message</h2>
+<p>Due to an influx of spam, we have had to impose restrictions on new accounts. Please see <a href="https://gitlab.freedesktop.org/freedesktop/freedesktop/-/wikis/home">this wiki page</a> for instructions on how to get full permissions. Sorry for the inconvenience.</p>
+</div>
+</div>
+<button class="gl-button btn btn-icon btn-sm btn-default btn-default-tertiary gl-broadcast-message-dismiss js-dismiss-current-broadcast-notification" aria-label="Close" data-id="10" data-expire-date="2030-12-01T21:21:05Z" data-cookie-key="hide_broadcast_message_10" type="button"><svg class="s16 gl-icon gl-button-icon " data-testid="close-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#close"></use></svg>
+
+</button>
+</div>
+
+
+
+
+
+</div>
+<div class="alert-wrapper alert-wrapper-top-space gl-flex gl-flex-col gl-gap-3 container-fluid container-limited">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="top-bar-fixed container-fluid" data-testid="top-bar">
+<div class="top-bar-container gl-flex gl-items-center gl-gap-2">
+<div class="gl-grow gl-basis-0 gl-flex gl-items-center gl-justify-start gl-gap-3">
+<button class="gl-button btn btn-icon btn-md btn-default btn-default-tertiary js-super-sidebar-toggle-expand super-sidebar-toggle -gl-ml-3" aria-controls="super-sidebar" aria-expanded="false" aria-label="Primary navigation sidebar" type="button"><svg class="s16 gl-icon gl-button-icon " data-testid="sidebar-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#sidebar"></use></svg>
+
+</button>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"pkg-config","item":"https://gitlab.freedesktop.org/pkg-config"},{"@type":"ListItem","position":2,"name":"pkg-config","item":"https://gitlab.freedesktop.org/pkg-config/pkg-config"}]}
+
+
+</script>
+<div data-testid="breadcrumb-links" id="js-vue-page-breadcrumbs-wrapper">
+<div data-breadcrumbs-json="[{&quot;text&quot;:&quot;pkg-config&quot;,&quot;href&quot;:&quot;/pkg-config&quot;,&quot;avatarPath&quot;:null},{&quot;text&quot;:&quot;pkg-config&quot;,&quot;href&quot;:&quot;/pkg-config/pkg-config&quot;,&quot;avatarPath&quot;:null}]" id="js-vue-page-breadcrumbs"></div>
+<div id="js-injected-page-breadcrumbs"></div>
+</div>
+
+
+</div>
+<div class="gl-flex-none gl-flex gl-items-center gl-justify-center">
+<div id="js-advanced-search-modal"></div>
+
+</div>
+<div class="gl-grow gl-basis-0 gl-flex gl-items-center gl-justify-end">
+<div id="js-work-item-feedback"></div>
+
+
+</div>
+</div>
+</div>
+
+<div class="container-fluid container-limited project-highlight-puc">
+<main class="content" id="content-body" itemscope itemtype="http://schema.org/SoftwareSourceCode">
+<div class="flash-container flash-container-page sticky" data-testid="flash-container">
+<div id="js-global-alerts"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<header class="project-home-panel js-show-on-project-root gl-mt-5">
+<div class="gl-flex gl-justify-between gl-flex-wrap gl-flex-col md:gl-flex-row gl-gap-5">
+<div class="home-panel-title-row gl-flex gl-items-center">
+<div alt="pkg-config" class="gl-avatar gl-avatar-s48 gl-self-start gl-shrink-0 gl-mr-4 !gl-rounded-base gl-avatar-identicon gl-avatar-identicon-bg2" itemprop="image">
+P
+</div>
+
+<h1 class="home-panel-title gl-heading-1 gl-flex gl-items-center gl-flex-wrap gl-gap-3 gl-break-anywhere gl-mb-0" data-testid="project-name-content" itemprop="name">
+pkg-config
+<button class="has-tooltip gl-border-0 gl-bg-transparent gl-p-0 gl-leading-0 gl-text-inherit visibility-icon gl-inline-flex gl-fill-icon-subtle" data-container="body" data-placement="top" title="Public - The project can be accessed without any authentication." type="button" aria-label="Public - The project can be accessed without any authentication."><svg class="s16 icon" data-testid="earth-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#earth"></use></svg></button>
+
+
+</h1>
+</div>
+<div data-can-read-project="true" data-id="953" data-is-group="false" data-is-project-archived="false" data-is-project-empty="false" data-project-id="953" data-project-name="pkg-config" data-project-visibility-level="public" data-sign-in-path="/users/sign_in?redirect_to_referer=yes" data-star-count="12" data-starred="false" data-starrers-path="/pkg-config/pkg-config/-/starrers" id="js-home-panel"></div>
+</div>
+
+</header>
+
+<div class="project-page-indicator js-show-on-project-root"></div>
+<div class="project-page-layout">
+<div class="project-page-layout-sidebar js-show-on-project-root gl-mt-5">
+<aside class="project-page-sidebar" data-testid="project-page-sidebar">
+<div class="project-page-sidebar-block home-panel-home-desc gl-py-4 gl-border-b gl-border-b-subtle !gl-pt-2">
+<h2 class="gl-text-base gl-font-bold gl-leading-reset gl-text-heading gl-m-0 gl-mb-1">Project information</h2>
+<div class="gl-mb-2 gl-mt-3">
+<div class="progress repository-languages-bar js-show-on-project-root"><div class="progress-bar has-tooltip" style="width: 94.15%; background-color:#555555" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;C&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;94.2%&lt;/span&gt;"></div><div class="progress-bar has-tooltip" style="width: 2.24%; background-color:#449a90" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;M4&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;2.2%&lt;/span&gt;"></div><div class="progress-bar has-tooltip" style="width: 0.86%; background-color:#438eff" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;Objective-C&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;0.9%&lt;/span&gt;"></div><div class="progress-bar has-tooltip" style="width: 0.81%; background-color:#89e051" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;Shell&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;0.8%&lt;/span&gt;"></div><div class="progress-bar has-tooltip" style="width: 0.46%; background-color:#0298c3" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;Perl&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;0.5%&lt;/span&gt;"></div></div>
+</div>
+</div>
+<div class="project-page-sidebar-block gl-py-4 gl-border-b gl-border-b-subtle">
+<nav class="project-stats">
+<ul class="nav gl-gap-y-2 gl-gap-x-5">
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2" href="/pkg-config/pkg-config/-/commits/master"><svg class="s16 icon gl-mr-3 gl-text-subtle" data-testid="commit-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#commit"></use></svg><strong class="project-stat-value">513</strong> Commits</a>
+</li>
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2" href="/pkg-config/pkg-config/-/branches"><svg class="s16 icon gl-mr-3 gl-text-subtle" data-testid="branch-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#branch"></use></svg><strong class="project-stat-value">1</strong> Branch</a>
+</li>
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2" href="/pkg-config/pkg-config/-/tags"><svg class="s16 icon gl-mr-3 gl-text-subtle" data-testid="label-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#label"></use></svg><strong class="project-stat-value">9</strong> Tags</a>
+</li>
+</ul>
+
+</nav>
+</div>
+<div class="project-page-sidebar-block gl-py-4 gl-border-b gl-border-b-subtle">
+<div class="project-buttons gl-mb-2 js-show-on-project-root" data-testid="project-buttons">
+<ul class="nav gl-gap-y-2 gl-gap-x-5">
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2 btn-default" href="/pkg-config/pkg-config/-/blob/master/README"><svg class="s16 icon gl-mr-3 gl-text-subtle" data-testid="doc-text-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#doc-text"></use></svg>README</a>
+</li>
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2 btn-default" itemprop="license" href="/pkg-config/pkg-config/-/blob/master/COPYING"><svg class="s16 icon gl-mr-3 gl-text-subtle" data-testid="scale-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#scale"></use></svg><span class="project-stat-value">GNU General Public License v2.0 or later</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2 btn-default" href="/pkg-config/pkg-config/-/blob/master/ChangeLog"><svg class="s16 icon gl-mr-3 gl-text-subtle" data-testid="doc-text-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#doc-text"></use></svg>CHANGELOG</a>
+</li>
+</ul>
+
+</div>
+</div>
+
+<div class="project-page-sidebar-block gl-py-4">
+<p class="gl-font-bold gl-text-strong gl-m-0 gl-mb-1">Created on</p>
+<span>August 25, 2018</span>
+</div>
+</aside>
+
+</div>
+<div class="project-page-layout-content">
+<div class="project-show-files">
+<div class="tree-holder clearfix js-per-page gl-mt-5" data-blame-per-page="1000" id="tree-holder">
+<div class="nav-block gl-flex gl-flex-col sm:gl-flex-row gl-items-stretch">
+<div class="tree-ref-container gl-flex gl-flex-wrap gl-gap-2 mb-2 mb-md-0">
+<div class="tree-ref-holder gl-max-w-26" data-testid="ref-dropdown-container">
+<div data-project-id="953" data-project-root-path="/pkg-config/pkg-config" data-ref-type="heads" id="js-tree-ref-switcher"></div>
+</div>
+<div data-can-collaborate="false" data-can-edit-tree="false" data-can-push-code="false" data-can-push-to-branch="false" data-new-blob-path="/pkg-config/pkg-config/-/new/master" data-new-branch-path="/pkg-config/pkg-config/-/branches/new" data-new-dir-path="/pkg-config/pkg-config/-/create_dir/master" data-new-tag-path="/pkg-config/pkg-config/-/tags/new" data-upload-path="/pkg-config/pkg-config/-/create/master" id="js-repo-breadcrumb"></div>
+</div>
+<div id="js-blob-controls"></div>
+<div class="tree-controls">
+<div class="gl-flex gl-flex-wrap gl-gap-3 gl-mb-3 sm:gl-mb-0">
+
+
+<button class="gl-button btn btn-md btn-default has-tooltip shortcuts-find-file" title="Go to file, press &lt;kbd class=&#39;flat ml-1&#39; aria-hidden=true&gt;/~&lt;/kbd&gt; or &lt;kbd class=&#39;flat ml-1&#39; aria-hidden=true&gt;t&lt;/kbd&gt;" aria-keyshortcuts="/+~ t" data-html="true" data-event-tracking="click_find_file_button_on_repository_pages" type="button"><span class="gl-button-text">
+Find file
+
+</span>
+
+</button>
+
+<div class="project-code-holder gl-hidden sm:gl-inline-block">
+<div class="git-clone-holder js-git-clone-holder">
+<div data-directory-download-links="[{&quot;text&quot;:&quot;zip&quot;,&quot;path&quot;:&quot;/pkg-config/pkg-config/-/archive/master/pkg-config-master.zip&quot;},{&quot;text&quot;:&quot;tar.gz&quot;,&quot;path&quot;:&quot;/pkg-config/pkg-config/-/archive/master/pkg-config-master.tar.gz&quot;},{&quot;text&quot;:&quot;tar.bz2&quot;,&quot;path&quot;:&quot;/pkg-config/pkg-config/-/archive/master/pkg-config-master.tar.bz2&quot;},{&quot;text&quot;:&quot;tar&quot;,&quot;path&quot;:&quot;/pkg-config/pkg-config/-/archive/master/pkg-config-master.tar&quot;}]" data-http-url="https://gitlab.freedesktop.org/pkg-config/pkg-config.git" data-ssh-url="git@ssh.gitlab.freedesktop.org:pkg-config/pkg-config.git" data-xcode-url="" id="js-code-dropdown"></div>
+</div>
+
+</div>
+</div>
+<div class="project-code-holder gl-flex gl-gap-3 sm:!gl-hidden">
+<div class="js-source-code-dropdown" data-css-class="" data-download-artifacts="[]" data-download-links="[{&quot;text&quot;:&quot;zip&quot;,&quot;path&quot;:&quot;/pkg-config/pkg-config/-/archive/master/pkg-config-master.zip&quot;},{&quot;text&quot;:&quot;tar.gz&quot;,&quot;path&quot;:&quot;/pkg-config/pkg-config/-/archive/master/pkg-config-master.tar.gz&quot;},{&quot;text&quot;:&quot;tar.bz2&quot;,&quot;path&quot;:&quot;/pkg-config/pkg-config/-/archive/master/pkg-config-master.tar.bz2&quot;},{&quot;text&quot;:&quot;tar&quot;,&quot;path&quot;:&quot;/pkg-config/pkg-config/-/archive/master/pkg-config-master.tar&quot;}]"></div>
+
+<div class="btn-group mobile-git-clone js-mobile-git-clone btn-block">
+<button class="gl-button btn btn-md btn-confirm hover:gl-no-underline gl-text-gray-700 js-clone-dropdown-label" title="Copy" aria-label="Copy" aria-live="polite" data-toggle="tooltip" data-placement="bottom" data-container="body" data-html="true" data-button-text="Copy HTTPS clone URL" data-size="medium" data-category="primary" data-variant="confirm" data-hide-button-icon="true" data-clipboard-text="https://gitlab.freedesktop.org/pkg-config/pkg-config.git" type="button"><span class="gl-button-text">
+Copy HTTPS clone URL
+</span>
+
+</button>
+<button class="btn gl-button btn-confirm dropdown-toggle js-dropdown-toggle flex-grow-0 gl-flex gl-items-center gl-justify-center w-auto ml-0" data-toggle="dropdown" type="button">
+<svg class="s16 dropdown-btn-icon icon" data-testid="chevron-down-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#chevron-down"></use></svg>
+</button>
+<ul class="dropdown-menu dropdown-menu-selectable dropdown-menu-right clone-options-dropdown" data-dropdown>
+<li class="js-clone-links">
+<a class="copy ssh clone url-selector is-active" href="git@ssh.gitlab.freedesktop.org:pkg-config/pkg-config.git" data-clone-type="ssh"><strong class="dropdown-menu-inner-title">Copy SSH clone URL</strong><span class="dropdown-menu-inner-content">git@ssh.gitlab.freedesktop.org:pkg-config/pkg-config.git</span></a>
+</li>
+<li class="js-clone-links">
+<a class="copy https clone url-selector " href="https://gitlab.freedesktop.org/pkg-config/pkg-config.git" data-clone-type="http"><strong class="dropdown-menu-inner-title">Copy HTTPS clone URL</strong><span class="dropdown-menu-inner-content">https://gitlab.freedesktop.org/pkg-config/pkg-config.git</span></a>
+</li>
+
+</ul>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="info-well project-last-commit gl-flex-col gl-mt-5">
+<div class="gl-flex gl-items-center gl-justify-center gl-m-auto gl-min-h-9 lg:gl-min-h-[4.5rem]" data-history-link="/pkg-config/pkg-config/-/commits/master" data-ref-type="heads" id="js-last-commit">
+<div class="gl-spinner-container" role="status"><span aria-hidden class="gl-spinner gl-spinner-md gl-spinner-dark !gl-align-text-bottom"></span><span class="gl-sr-only !gl-absolute">Loading</span>
+</div>
+</div>
+</div>
+<div data-escaped-ref="master" data-full-name="pkg-config / pkg-config" data-project-path="pkg-config/pkg-config" data-project-short-path="pkg-config" data-ref="master" data-ref-type="heads" id="js-tree-list"></div>
+</div>
+
+</div>
+</div>
+</div>
+
+</main>
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+//<![CDATA[
+if ('loading' in HTMLImageElement.prototype) {
+  document.querySelectorAll('img.lazy').forEach(img => {
+    img.loading = 'lazy';
+    let imgUrl = img.dataset.src;
+    // Only adding width + height for avatars for now
+    if (imgUrl.indexOf('/avatar/') > -1 && imgUrl.indexOf('?') === -1) {
+      const targetWidth = img.getAttribute('width') || img.width;
+      imgUrl += `?width=${targetWidth}`;
+    }
+    img.src = imgUrl;
+    img.removeAttribute('data-src');
+    img.classList.remove('lazy');
+    img.classList.add('js-lazy-loaded');
+    img.dataset.testid = 'js-lazy-loaded-content';
+  });
+}
+
+//]]>
+</script>
+<script>
+//<![CDATA[
+gl = window.gl || {};
+gl.experiments = {};
+
+
+//]]>
+</script>
+
+</body>
+</html>
+
