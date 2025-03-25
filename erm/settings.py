@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import dj_database_url
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -82,17 +83,29 @@ WSGI_APPLICATION = 'erm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'erm',
+#        'USER': 'admin',
+#        'PASSWORD': 'Himawari_31',
+#        'HOST': 'erm.c5s80iowoji6.us-east-2.rds.amazonaws.com',
+#        'PORT': 3306
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'erm',
-        'USER': 'admin',
-        'PASSWORD': 'Himawari_31',
-        'HOST': 'erm.c5s80iowoji6.us-east-2.rds.amazonaws.com',
-        'PORT': 3306
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
+del DATABASES['default']['OPTIONS']['sslmode'] 
+DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
 
+#DATABASE_URL=mysql://admin:Himawari_31@erm.c5s80iowoji6.us-east-2.rds.amazonaws.com:3306/erm
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
