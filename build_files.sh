@@ -1,6 +1,6 @@
 echo "Building the project..."
 
-yum install mariadb105-devel
+#yum install mariadb105-devel
 mysql_config --cflags
 mysql_config --libs
 
