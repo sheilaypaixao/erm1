@@ -36,6 +36,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://ermfrontend.vercel.app/",
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
