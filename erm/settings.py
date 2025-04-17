@@ -30,9 +30,12 @@ SECRET_KEY = 'django-insecure-!lh9gi0_2uno(v$it!5!-z_-644dzi69x9@r1c$x&7*wf(zh4h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['erm1.vercel.app', 'localhost:5173', 'localhost:8000', 'localhost']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost:5173', 'localhost:8000', 'localhost']
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://ermfrontend.vercel.app/",
+]
 
 # Application definition
 
