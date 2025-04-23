@@ -20,8 +20,6 @@ class Employees(Base):
 
         employees = Employee.objects.filter(enterprise_id=enterprise_id).all()
 
-        print(with_owner)
-
         if not with_owner or with_owner == "false":
             employees = employees.exclude(user_id=owner_id).all()
 

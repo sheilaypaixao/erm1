@@ -1,6 +1,6 @@
 from companies.views.base import Base
 from companies.models import Task, TaskStatus
-from companies.serializers import TasksSerializer, TaskSerializer
+from companies.serializers import TasksSerializer, TaskSerializer, TaskStatusSerializer
 from companies.utils.permissions import TaskPermissions
 
 from rest_framework.views import Response
@@ -12,7 +12,17 @@ class Tasks(Base):
 
     def get(self, request):
         enterprise_id = self.get_enterprise_id(request.user.id)
-        tasks = Task.objects.filter(enterprise_id=enterprise_id, employee_id=request.user.id)
+        
+        date_start = request.GET.get("date_start")
+        date_end = request.GET.get("date_end")
+
+        tasks = Task.objects.filter(enterprise_id=enterprise_id, employee_id=request.user.id).all()
+
+        if date_start:
+            tasks = tasks.filter(created_at__gte=date_start).all()
+
+        if date_end:
+            tasks = tasks.filter(created_at__lte=date_end + " 23:59").all()
 
         serializer = TasksSerializer(tasks, many=True)
 
@@ -104,10 +114,40 @@ class TaskDetail(Base):
 
 
 class TasksCreated(Base):
+    permission_classes = [TaskPermissions]
+
     def get(self, request):
         enterprise_id = self.get_enterprise_id(request.user.id)
-        tasks = Task.objects.filter(enterprise_id=enterprise_id, creator_employee_id=request.user.id)
+
+        date_start = request.GET.get("date_start")
+        date_end = request.GET.get("date_end")
+
+        #date_start = "2025-4-18 00:00"
+        #date_end = "2025-4-20 23:59"
+
+        tasks = Task.objects.filter(enterprise_id=enterprise_id, creator_employee_id=request.user.id).all()
+
+        if date_start:
+            print(date_start)
+            #date_start = datetime.datetime.strptime(date_start + " 00:00", "%Y-%m-%d %H:%M")
+            tasks = tasks.filter(created_at__gte=date_start).all()
+
+        if date_end:
+            print(date_end)
+            #date_end = datetime.datetime.strptime(date_end + " 23:59", "%Y-%m-%d %H:%M")
+            tasks = tasks.filter(created_at__lte=date_end + " 23:59").all()
 
         serializer = TasksSerializer(tasks, many=True)
 
         return Response({"tasks": serializer.data})
+
+class TaskStatusDetail(Base):
+    permission_classes = [TaskPermissions]
+
+    def get(self, request):
+
+        status = TaskStatus.objects.all()
+
+        serializer = TaskStatusSerializer(status, many=True)
+
+        return Response({"status": serializer.data})
